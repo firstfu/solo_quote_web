@@ -1,26 +1,343 @@
 @import "tailwindcss";
 
+/* ===== Design System for 接案神器 SoloQuote ===== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color Palette - Midnight Gold */
+  --color-bg-deep: #060D18;
+  --color-bg-primary: #0B1426;
+  --color-bg-card: #111D36;
+  --color-bg-elevated: #162544;
+
+  /* Gold Accents */
+  --color-gold-50: #FDF8E8;
+  --color-gold-100: #F9ECC6;
+  --color-gold-200: #F3D98A;
+  --color-gold-300: #E8C455;
+  --color-gold-400: #D4A853;
+  --color-gold-500: #C49A47;
+  --color-gold-600: #A67C32;
+
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+
+  /* Accent Colors */
+  --color-accent-blue: #3B82F6;
+  --color-accent-green: #10B981;
+  --color-accent-amber: #F59E0B;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-gold: rgba(212, 168, 83, 0.3);
+
+  /* Shadows */
+  --shadow-gold: 0 0 60px rgba(212, 168, 83, 0.15);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+  --font-sans: var(--font-noto-sans);
+  --font-display: var(--font-outfit);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-deep);
+  color: var(--color-text-primary);
+  font-family: var(--font-noto-sans), "PingFang TC", "Microsoft JhengHei", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== Typography ===== */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-200) 0%, var(--color-gold-400) 50%, var(--color-gold-300) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-white {
+  background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Glass Morphism Cards ===== */
+.glass-card {
+  background: linear-gradient(135deg, rgba(17, 29, 54, 0.9) 0%, rgba(22, 37, 68, 0.7) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.glass-card-gold {
+  background: linear-gradient(135deg, rgba(17, 29, 54, 0.95) 0%, rgba(22, 37, 68, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border-gold);
+  border-radius: 20px;
+  box-shadow: var(--shadow-gold);
+}
+
+/* ===== Buttons ===== */
+.btn-gold {
+  background: linear-gradient(135deg, var(--color-gold-400) 0%, var(--color-gold-500) 100%);
+  color: #0B1426;
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 168, 83, 0.4);
+  background: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-gold-400) 100%);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold-400);
+  background: rgba(212, 168, 83, 0.1);
+}
+
+/* ===== Animated Background ===== */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.bg-radial-gold {
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.15), transparent);
+}
+
+.bg-radial-blue {
+  background: radial-gradient(ellipse 60% 40% at 80% 100%, rgba(59, 130, 246, 0.1), transparent);
+}
+
+/* ===== Glow Effects ===== */
+.glow-gold {
+  box-shadow:
+    0 0 20px rgba(212, 168, 83, 0.2),
+    0 0 40px rgba(212, 168, 83, 0.1),
+    0 0 60px rgba(212, 168, 83, 0.05);
+}
+
+.glow-gold-lg {
+  box-shadow:
+    0 0 40px rgba(212, 168, 83, 0.3),
+    0 0 80px rgba(212, 168, 83, 0.15),
+    0 0 120px rgba(212, 168, 83, 0.08);
+}
+
+/* ===== Phone Mockup ===== */
+.phone-mockup {
+  position: relative;
+  width: 280px;
+  height: 580px;
+  background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
+  border-radius: 44px;
+  padding: 12px;
+  box-shadow:
+    0 50px 100px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.phone-mockup::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 28px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 34px;
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Animations ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+
+/* ===== Feature Icons ===== */
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.15) 0%, rgba(212, 168, 83, 0.05) 100%);
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  color: var(--color-gold-400);
+  font-size: 24px;
+}
+
+/* ===== Pricing Card ===== */
+.pricing-badge {
+  background: linear-gradient(135deg, var(--color-gold-400) 0%, var(--color-gold-500) 100%);
+  color: #0B1426;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-elevated);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-600);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(212, 168, 83, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* ===== Legal Pages ===== */
+.legal-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-gold-300);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal-content p {
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.legal-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.legal-content li {
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.legal-content li::before {
+  content: '•';
+  color: var(--color-gold-400);
+  position: absolute;
+  left: 0;
 }
